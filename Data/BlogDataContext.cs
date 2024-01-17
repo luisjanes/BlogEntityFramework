@@ -21,7 +21,8 @@ namespace BlogEntityFramework.Data
         //public DbSet<UserRole> UserRoles { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("Server=localhost;Database=Blog;User ID=root;Password=123456", ServerVersion.AutoDetect("Server=localhost;Database=Blog;User ID=root;Password=123456"));
+            const string connectionString = "Server=localhost;Database=Blog;User ID=root;Password=123456";
+            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
     }
 }
