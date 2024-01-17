@@ -23,6 +23,7 @@ namespace BlogEntityFramework.Data
         {
             const string connectionString = "Server=localhost;Database=Blog;User ID=root;Password=123456";
             optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            optionsBuilder.LogTo(Console.WriteLine);
         }
     }
 }

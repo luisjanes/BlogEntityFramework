@@ -43,6 +43,7 @@ namespace BlogEntityFramework
                 .Posts
                 .AsNoTracking()
                 .Include(x=>x.Author)
+                .Include(x=>x.Category)
                 .OrderBy(x=>x.LastUpdateDate)
                 .ToList();
 
@@ -50,7 +51,7 @@ namespace BlogEntityFramework
             {
                 Console.WriteLine($"{post.Title} escrito por {post.Author?.Name}");
                 Console.WriteLine($"{post.Body}");
-                Console.WriteLine($"{post.CreateDate}");
+                Console.WriteLine($"{post.CreateDate} - {post.Category.Name}");
             }
         }
     }
