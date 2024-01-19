@@ -39,20 +39,32 @@ namespace BlogEntityFramework
             //context.Posts.Add(post);
             //context.SaveChanges();
 
+            //var posts = context
+            //    .Posts
+            //    .AsNoTracking()
+            //    .Include(x=>x.Author)
+            //    .Include(x=>x.Category)
+            //    .OrderBy(x=>x.LastUpdateDate)
+            //    .ToList();
+
+            //foreach (var post in posts)
+            //{
+            //    Console.WriteLine($"{post.Title} escrito por {post.Author?.Name}");
+            //    Console.WriteLine($"{post.Body}");
+            //    Console.WriteLine($"{post.CreateDate} - {post.Category.Name}");
+            //}
+
             var posts = context
                 .Posts
-                .AsNoTracking()
-                .Include(x=>x.Author)
-                .Include(x=>x.Category)
-                .OrderBy(x=>x.LastUpdateDate)
-                .ToList();
+                .Include(x => x.Author)
+                .Include(x => x.Category)
+                .OrderBy(x => x.LastUpdateDate)
+                .Where(x=>x.AuthorId==9)
+                .FirstOrDefault();
+            posts.Author.Name = "Luis Felipe Janes";
 
-            foreach (var post in posts)
-            {
-                Console.WriteLine($"{post.Title} escrito por {post.Author?.Name}");
-                Console.WriteLine($"{post.Body}");
-                Console.WriteLine($"{post.CreateDate} - {post.Category.Name}");
-            }
+            context.Update(posts);
+            context.SaveChanges();
         }
     }
 }
